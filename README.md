@@ -34,6 +34,17 @@ Foram implementadas **10 entidades**, todas com **CRUD completo** e devidamente 
 
 ---
 
+Diagrama da Modelagem
+
+O diagrama contendo todas as collections e relacionamentos está dentro da pasta:
+
+/src/docs/diagrama.png 
+
+
+<img width="1058" height="864" alt="diagrama" src="https://github.com/user-attachments/assets/589073e7-8d99-4641-9cd2-538fed14ffe3" />
+
+---
+
 ##  Tecnologias e Conceitos Aplicados
 
 ###  Backend
