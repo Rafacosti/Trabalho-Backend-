@@ -5,7 +5,7 @@ API de Gestão de Saúde
 
 ##  Descrição do Projeto
 
-Este projeto consiste no desenvolvimento de uma **API REST completa**, criada como parte da avaliação da disciplina *Construção de Backend (ADS28)*, ministrada pelo professor **Gustavo Clay**.
+Este projeto consiste no desenvolvimento de uma **API REST completa**, criada como parte da avaliação da disciplina *Construção de Backend, ministrada pelo professor **Gustavo Clay**.
 
 O objetivo foi aplicar na prática os conceitos estudados durante o semestre, incluindo:
 
