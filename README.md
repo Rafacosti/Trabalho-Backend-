@@ -1,205 +1,156 @@
-API de Gestão de Saúde 
+API de Gestão de Saúde
 
-Descrição do Projetos
+A API de Gestão de Saúde foi desenvolvida para administrar usuários, beneficiários, planos, unidades, profissionais, especialidades, procedimentos, coberturas, agendamentos e faturas. O projeto aplica conceitos de REST, Express, Node.js, Mongoose, validação e boas práticas de backend.
 
-
-Este projeto consiste no desenvolvimento de uma API REST completa, O objetivo foi aplicar todos os conceitos estudados sobre APIs REST, Express, Node.js, Mongoose, middleware, validação, rotas, controllers e organização profissional de projeto backend.
-
-A API representa um sistema de gestão de saúde, permitindo o gerenciamento de usuários, beneficiários, planos, unidades, profissionais, especialidades, procedimentos, agendamentos, faturas e coberturas.
-
- 1. Tecnologias Utilizadas
+ Tecnologias Utilizadas
 
 Node.js
 
 Express.js
 
-MongoDB + Mongoose
+MongoDB (Atlas) + Mongoose
+
+Yup para validações
 
 Express-Async-Errors
 
-Cors
-
 Dotenv
 
-Validações personalizadas
+Cors
 
-Middleware global de erros
+Arquitetura MVC
 
-Arquitetura MVC (Models, Controllers, Routes)
+ Descrição do Sistema
 
- 2. Estrutura Geral da API
+A API simula um sistema real de gestão de saúde, permitindo:
 
-A API foi construída seguindo princípios REST, incluindo:
+Cadastro e gerenciamento de beneficiários e planos
 
-Endpoints semânticos
-Métodos HTTP corretos (GET, POST, PUT, DELETE)
-Uso adequado de status codes (200, 201, 400, 404, 500 etc.)
-Validações via Mongoose
-Controllers limpos e organizados
-Separação total entre rotas, controllers e modelos
-Banco de dados MongoDB externo através de URL
+Cadastro de unidades e profissionais de saúde
 
-Recursos disponíveis:
-Recurso	Endpoint base
-Usuários	/api/users
-Planos	/api/plans
-Beneficiários	/api/beneficiaries
-Unidades	/api/units
-Profissionais	/api/professionals
-Especialidades	/api/specialties
-Procedimentos	/api/procedures
-Agendamentos	/api/appointments
-Faturas	/api/invoices
-Coberturas	/api/coverages
+Registro de especialidades e procedimentos
 
-Como Executar o Projeto
-    
-    Pré-requisitos
+Agendamento de consultas
 
-Node.js versão LTS
+Emissão de faturas
 
-MongoDB Atlas (ou local)
+Controle de coberturas de planos
 
-VSCode
+As entidades possuem relacionamentos adequados (ex.: beneficiário → plano, profissional → unidade + especialidade, etc.).
 
-Postman (opcional para testes)
+ Estrutura resumida do projeto 
+src/
+├── config/        # conexão MongoDB
+├── controllers/   # lógica dos recursos
+├── middlewares/   # validações e erros
+├── models/        # schemas Mongoose
+├── routes/        # rotas REST
+├── validators/    # schemas Yup
+└── app.js
+
+ Principais Collections
+
+Users — administradores e operadores
+Plans — planos de saúde
+Beneficiaries — pacientes
+Units — unidades de atendimento
+Professionals — médicos/profissionais
+Specialties — especialidades
+Procedures — exames e consultas
+Coverages — regras de cobertura
+Appointments — agendamentos
+Invoices — faturas geradas
+
+ Diagrama da Modelagem
+
+O diagrama está em:
+
+/src/docs/diagrama.png
+
+🔗 Endpoints Principais
+
+Cada recurso segue o padrão:
+
+GET /        → listar
+GET /:id     → buscar por ID
+POST /       → criar
+PUT /:id     → atualizar
+DELETE /:id  → remover
 
 
- Clonar o repositório
+Exemplos de recursos:
+
+/api/users
+/api/plans
+/api/beneficiaries
+/api/units
+/api/professionals
+/api/specialties
+/api/procedures
+/api/appointments
+/api/invoices
+/api/coverages
+
+ Como Executar
+1. Clonar o repositório
 git clone https://github.com/Rafacosti/Trabalho-Backend-.git
-
- Entrar na pasta
 cd Trabalho-Backend-
 
- Instalar dependências
+2. Instalar dependências
 npm install
 
-Configurar o arquivo .env
-
-Crie um arquivo .env na raiz com:
-
-MONGO_URI=coloque_sua_url_do_mongodb_aqui
+3. Criar arquivo .env
 PORT=3000
+MONGO_URI=sua_url_mongodb
 
-Iniciar o servidor
+4. Iniciar servidor
 npm start
 
 
-Servidor iniciará em:
+Servidor: http://localhost:3000
 
-http://localhost:3000
+ Conexão com o Banco
 
-📌 4. Conexão com o Banco de Dados
+A conexão está em:
 
-O MongoDB é conectado via arquivo:
-
-/config/db.js
+src/config/db.js
 
 
-Com a seguinte estrutura:
+Com uso de mongoose.connect() e tratamento de erro.
 
-const mongoose = require('mongoose');
-
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log('MongoDB conectado com sucesso');
-  } catch (error) {
-    console.error('Erro ao conectar ao MongoDB:', error);
-    process.exit(1);
-  }
-};
-
-module.exports = connectDB;
-
-📌 5. Arquivo principal app.js
-require('express-async-errors');
-const express = require('express');
-const cors = require('cors');
-const connectDB = require('./config/db');
-const errorHandler = require('./middlewares/errorHandler');
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-connectDB();
-
-app.use('/api/users', require('./routes/user.routes'));
-app.use('/api/plans', require('./routes/plan.routes'));
-app.use('/api/beneficiaries', require('./routes/beneficiary.routes'));
-app.use('/api/units', require('./routes/unit.routes'));
-app.use('/api/professionals', require('./routes/professional.routes'));
-app.use('/api/specialties', require('./routes/specialty.routes'));
-app.use('/api/procedures', require('./routes/procedure.routes'));
-app.use('/api/appointments', require('./routes/appointment.routes'));
-app.use('/api/invoices', require('./routes/invoice.routes'));
-app.use('/api/coverages', require('./routes/coverage.routes'));
-
-app.get('/', (req,res) => res.json({ message: 'API up' }));
-
-app.use(errorHandler);
-
-module.exports = app;
-
- Endpoints da API (Resumo)
-
-Cada recurso possui:
-
-✔ GET — listar todos
-✔ GET /:id — buscar por ID
-✔ POST — criar
-✔ PUT /:id — atualizar
-✔ DELETE /:id — remover
-
-Exemplo (Beneficiários):
-
-POST /api/beneficiaries
-{
-  "name": "Carlos Mendes",
-  "cpf": "12345678900",
-  "planId": "672ab856ed9f1d489c33149a"
-}
-
- Middleware Global de Erros
-
-Todos os erros passam pelo arquivo:
-
-/middlewares/errorHandler.js
+ Integrantes
 
 
-Incluindo:
+Exemplo (preencher conforme necessário):
 
-validações
+Modelagem das entidades
 
-erros de MongoDB
+Desenvolvimento dos CRUDs
 
-erros de controllers
+Implementação dos validators
 
-mensagens personalizadas
+Configuração MongoDB
 
+Organização da estrutura
 
- Testes com Postman
+Documentação no README
 
-Uma collection Postman foi utilizada para:
+ Resumo Final
 
-testar todos os endpoints;
+A API entrega:
 
-validar respostas;
+CRUD completo para todos os recursos
 
-simular erros;
+Validações com Yup e Mongoose
 
-exportação em JSON (conforme exigido pela atividade).
+Middleware global de erros
 
-Conclusão
+Estrutura modular e escalável
 
-Este projeto demonstra, de forma completa, os conhecimentos aplicados na disciplina:
+Conexão funcional com MongoDB
 
-Estrutura profissional de backend
-Uso correto de rotas, controladores e modelos
-Banco de dados MongoDB
-Middleware de erro
-Validações
-Padrões REST
-Modularidade e boas práticas
+Documentação organizada
 
-A API está pronta para evoluir para autenticação JWT, dashboards, front-end e muito mais.
+Diagrama de modelagem incluído
+
+A aplicação está pronta para evoluir com autenticação JWT, dashboards e integração com front-end.
