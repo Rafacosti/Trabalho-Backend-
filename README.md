@@ -67,7 +67,7 @@ O diagrama está em:
 
 /src/docs/diagrama.png
 
-🔗 Endpoints Principais
+ Endpoints Principais
 
 Cada recurso segue o padrão:
 
