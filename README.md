@@ -91,12 +91,30 @@ Copiar código
 cd Trabalho-Backend-
 Instalar as dependências
 
+Express
+npm install express
+
+ Mongoose
+npm install mongoose
+
+ Yup
+npm install yup
+
+ Express Async Errors
+npm install express-async-errors
+
+ CORS
+npm install cors
+
+ Dotenv
+npm install dotenv
+
 bash
 Copiar código
 npm install
 Criar o arquivo .env na raiz
 
-ini
+
 Copiar código
 PORT=3000
 MONGO_URI=sua_string_do_mongodb
@@ -217,12 +235,9 @@ Collection exportada adicionada ao repositório
 
 Exemplos de requisição e resposta documentados
 
-7. Integrantes e Contribuições
-Integrante	GitHub	Contribuições
-Rafael Araújo Costa	@Rafacosti	CRUDs, validações, modelagem, README, organização do projeto
-(Adicionar outros membros)		
+		
 
-Cada integrante deve descrever:
+
 
 CRUDs que desenvolveu
 
