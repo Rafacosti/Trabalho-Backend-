@@ -1,0 +1,112 @@
+{
+  "info": {
+    "_postman_id": "d67a7d3e-a9f4-47b0-bf41-72373e3b88da",
+    "name": "Healthcare API - Coverages",
+    "description": "# 📌 Healthcare API - Coverages\n\nColeção com todas as rotas relacionadas ao recurso **Coverages** (Coberturas de plano de saúde).\n\n## 🎯 Função do Recurso\nA entidade **Coverage** geralmente representa quais procedimentos/serviços um plano cobre.\n\n### Exemplos comuns:\n- Consultas\n- Exames\n- Internações\n- Procedimentos cirúrgicos\n\n## 🔧 API Stack\n- Node.js (Express)\n- MongoDB + Mongoose\n- Postman Collection v2.1\n\n## 📁 Organização desta coleção\nEsta pasta contém:\n- Listagem de coberturas\n- Busca por ID\n- Criação\n- Atualização\n- Exclusão\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+
+  "item": [
+    {
+      "name": "coverages",
+      "description": "## 📌 Recurso: Coverages\nRepresenta os tipos de **cobertura de um plano de saúde**, indicando quais procedimentos são permitidos.\n\n### Estrutura comum (depende do seu model):\n- `name` – Nome da cobertura (ex: \"Consulta Básica\")\n- `description` – Descrição detalhada\n- `planId` – Plano ao qual a cobertura pertence\n- `procedures` – Lista de procedimentos permitidos",
+      "item": [
+
+        {
+          "name": "GET - Listar todas as coberturas",
+          "request": {
+            "method": "GET",
+            "description": "Retorna todas as coberturas cadastradas na base.",
+            "url": {
+              "raw": "http://localhost:3000/coverages",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["coverages"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "GET - Buscar cobertura por ID",
+          "request": {
+            "method": "GET",
+            "description": "Busca uma cobertura específica pelo seu ID.\n\n### 🔢 Parâmetro obrigatório\n- **id**: identificador único da cobertura",
+            "url": {
+              "raw": "http://localhost:3000/coverages/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["coverages", ":id"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "POST - Criar nova cobertura",
+          "request": {
+            "method": "POST",
+            "description": "Cria uma nova cobertura no sistema.\n\n### 📝 Exemplo de body válido",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Cobertura Ambulatorial\",\n  \"description\": \"Inclui consultas, exames simples e retorno médico.\",\n  \"planId\": \"6743f23aa03b9839b3f9b120\",\n  \"procedures\": [\n    \"Consulta Geral\",\n    \"Exame de Sangue\",\n    \"Eletrocardiograma\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/coverages",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["coverages"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "PUT - Atualizar cobertura",
+          "request": {
+            "method": "PUT",
+            "description": "Atualiza uma cobertura existente.\n\n### 📝 Exemplo de body válido (parcial ou completo)",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Inclui consultas, exames simples, retorno médico e pequenas cirurgias.\",\n  \"procedures\": [\n    \"Consulta Geral\",\n    \"Exame de Sangue\",\n    \"Pequena Cirurgia\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/coverages/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["coverages", ":id"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "DELETE - Remover cobertura",
+          "request": {
+            "method": "DELETE",
+            "description": "Remove uma cobertura da base de dados.\n\n### 🔢 Parâmetro obrigatório\n- **id**: identificador da cobertura",
+            "url": {
+              "raw": "http://localhost:3000/coverages/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["coverages", ":id"]
+            }
+          },
+          "response": []
+        }
+
+      ]
+    }
+  ]
+}

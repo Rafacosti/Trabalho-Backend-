@@ -1,0 +1,84 @@
+{
+  "info": {
+    "name": "Procedures API",
+    "description": "Collection responsável por gerenciar os procedimentos. Inclui rotas de criação, listagem, busca por ID, atualização e remoção. Todos os endpoints utilizam o modelo `procedure.model`.",
+    "_postman_id": "procedures-collection-001",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+
+  "item": [
+    {
+      "name": "Procedures",
+      "description": "Operações relacionadas à entidade **Procedure**. Cada procedimento representa um serviço ou ação oferecida no sistema.",
+      "item": [
+
+        {
+          "name": "GET - Listar todos os Procedures",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/procedures",
+            "description": "Retorna a lista de todos os procedimentos cadastrados."
+          },
+          "response": []
+        },
+
+        {
+          "name": "POST - Criar novo Procedure",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/procedures",
+            "description": "Cria um novo procedimento com base nos dados enviados no corpo da requisição.",
+            "header": [{
+              "key": "Content-Type",
+              "value": "application/json"
+            }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Limpeza de pele\",\n  \"price\": 120,\n  \"duration\": 45\n}"
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "GET - Buscar Procedure por ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/procedures/:id",
+            "description": "Busca um procedimento específico pelo ID informado."
+          },
+          "response": []
+        },
+
+        {
+          "name": "PUT - Atualizar Procedure",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/procedures/:id",
+            "description": "Atualiza os dados de um procedimento existente.",
+            "header": [{
+              "key": "Content-Type",
+              "value": "application/json"
+            }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price\": 150,\n  \"duration\": 60\n}"
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "DELETE - Remover Procedure",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/procedures/:id",
+            "description": "Remove um procedimento existente pelo ID."
+          },
+          "response": []
+        }
+
+      ]
+    }
+  ]
+}

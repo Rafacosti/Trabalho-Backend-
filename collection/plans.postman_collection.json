@@ -1,0 +1,108 @@
+{
+  "info": {
+    "_postman_id": "eacb26fc-0959-4d08-877e-0dc9ea2e66aa",
+    "name": "Healthcare API - Plans",
+    "description": "Coleção referente à entidade **Plans (Planos de Saúde)** do sistema Healthcare API.\n\nEsta coleção contém todos os endpoints de CRUD, exemplos de requisições, bodies válidos e respostas.\n\nCampos comuns de um Plano:\n- **name**: Nome do plano\n- **coverageType**: Tipo de cobertura\n- **monthlyFee**: Mensalidade do plano\n- **status**: ativo / inativo",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Plans",
+      "description": "Recurso responsável pelos **Planos de Saúde** cadastrados no sistema.",
+      "item": [
+        {
+          "name": "GET - Listar todos os planos",
+          "request": {
+            "method": "GET",
+            "description": "Retorna a lista completa de planos cadastrados.",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/plans",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["plans"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Criar novo plano",
+          "request": {
+            "method": "POST",
+            "description": "Cria um novo plano de saúde no sistema.",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Plano Prata\",\n  \"coverageType\": \"Ambulatorial + Hospitalar\",\n  \"monthlyFee\": 259.90,\n  \"status\": \"ativo\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/plans",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["plans"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Buscar plano por ID",
+          "request": {
+            "method": "GET",
+            "description": "Retorna um plano específico através do seu ID.",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/plans/6760e310a21b912345678020",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["plans", "6760e310a21b912345678020"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT - Atualizar plano por ID",
+          "request": {
+            "method": "PUT",
+            "description": "Atualiza os dados de um plano existente.",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Plano Prata Plus\",\n  \"monthlyFee\": 279.90,\n  \"status\": \"ativo\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/plans/6760e310a21b912345678020",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["plans", "6760e310a21b912345678020"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE - Remover plano por ID",
+          "request": {
+            "method": "DELETE",
+            "description": "Remove um plano do sistema pelo seu ID.",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/plans/6760e310a21b912345678020",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["plans", "6760e310a21b912345678020"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

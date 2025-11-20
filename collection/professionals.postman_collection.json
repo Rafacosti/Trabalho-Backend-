@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "Professionals",
+    "_postman_id": "c9b447a2-08e1-4da8-9ec1-12a9c95f93f4",
+    "description": "Collection contendo todas as rotas de Profissionais. Inclui operações de CRUD: listar, buscar por ID, criar, atualizar e deletar profissionais.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET - Listar Profissionais",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "Retorna todos os profissionais cadastrados.",
+        "url": {
+          "raw": "http://localhost:3000/professionals",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["professionals"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST - Criar Profissional",
+      "request": {
+        "method": "POST",
+        "header": [{
+          "key": "Content-Type",
+          "value": "application/json"
+        }],
+        "description": "Cria um novo profissional.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Dr. João Martins\",\n  \"especialidade\": \"Cardiologia\",\n  \"registro\": \"CRM123456\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/professionals",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["professionals"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Buscar Profissional por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "Retorna um profissional específico pelo ID.",
+        "url": {
+          "raw": "http://localhost:3000/professionals/ID_AQUI",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["professionals", "ID_AQUI"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT - Atualizar Profissional",
+      "request": {
+        "method": "PUT",
+        "header": [{
+          "key": "Content-Type",
+          "value": "application/json"
+        }],
+        "description": "Atualiza informações de um profissional existente.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Dr. João Martins Atualizado\",\n  \"especialidade\": \"Ortopedia\",\n  \"registro\": \"CRM654321\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/professionals/ID_AQUI",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["professionals", "ID_AQUI"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE - Remover Profissional",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "description": "Remove um profissional do sistema.",
+        "url": {
+          "raw": "http://localhost:3000/professionals/ID_AQUI",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["professionals", "ID_AQUI"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

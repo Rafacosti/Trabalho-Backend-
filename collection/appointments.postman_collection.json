@@ -1,0 +1,112 @@
+{
+  "info": {
+    "_postman_id": "b57df0c1-2bb4-4c62-a1fa-f8af3b34d111",
+    "name": "Healthcare API - Appointments",
+    "description": "# 📌 Healthcare API - Appointments\n\nColeção contendo todos os endpoints relacionados à entidade **appointments**.\n\n## 📚 Sobre o Projeto\nEsta API faz parte do sistema Healthcare, que gerencia planos, unidades, agendamentos, profissionais, beneficiários, procedimentos e faturas.\n\n## 🎯 Objetivo da Coleção\nFornecer uma documentação clara, organizada e totalmente testável dos endpoints de **agendamentos**, incluindo:\n- Exemplos de requisição\n- Descrições completas\n- Estrutura de dados\n- Organização por recursos\n\n## 🔧 Tecnologias\n- Node.js + Express\n- MongoDB + Mongoose\n- Postman Collection v2.1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+
+  "item": [
+    {
+      "name": "appointments",
+      "description": "## 📌 Recurso: Appointments\nGerencia todos os **agendamentos** dos beneficiários com profissionais e unidades.\n\n### Campos comuns do modelo (exemplo)\n> Ajuste conforme seu `appointment.model.js` real.\n- `beneficiaryId` (ObjectId)\n- `professionalId` (ObjectId)\n- `procedureId` (ObjectId)\n- `unitId` (ObjectId)\n- `date` (String ou Date ISO)\n- `status` (String: scheduled, canceled, completed)\n",
+      "item": [
+
+        {
+          "name": "GET - Listar todos os agendamentos",
+          "request": {
+            "method": "GET",
+            "description": "Retorna todos os agendamentos registrados no sistema.",
+            "url": {
+              "raw": "http://localhost:3000/appointments",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "GET - Buscar agendamento por ID",
+          "request": {
+            "method": "GET",
+            "description": "Retorna um agendamento específico pelo seu ID.\n\n### 🔢 Parâmetro obrigatório\n- **id**: ID do agendamento",
+            "url": {
+              "raw": "http://localhost:3000/appointments/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments", ":id"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "POST - Criar novo agendamento",
+          "request": {
+            "method": "POST",
+            "description": "Cria um novo agendamento.\n\n### 📝 Exemplo de body válido",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"beneficiaryId\": \"6743f23aa03b9839b3f9b120\",\n  \"professionalId\": \"6743f23aa03b9839b3f9b131\",\n  \"procedureId\": \"6743f23aa03b9839b3f9b142\",\n  \"unitId\": \"6743f23aa03b9839b3f9b153\",\n  \"date\": \"2025-01-20T14:30:00.000Z\",\n  \"status\": \"scheduled\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/appointments",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "PUT - Atualizar agendamento",
+          "request": {
+            "method": "PUT",
+            "description": "Atualiza os dados de um agendamento existente.\n\n### 📝 Exemplo de body válido",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"2025-02-10T10:00:00.000Z\",\n  \"status\": \"completed\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/appointments/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments", ":id"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "DELETE - Remover agendamento",
+          "request": {
+            "method": "DELETE",
+            "description": "Remove um agendamento do sistema.\n\n### 🔢 Parâmetro obrigatório\n- **id**: ID do agendamento",
+            "url": {
+              "raw": "http://localhost:3000/appointments/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments", ":id"]
+            }
+          },
+          "response": []
+        }
+
+      ]
+    }
+  ]
+}

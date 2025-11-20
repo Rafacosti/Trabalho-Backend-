@@ -1,0 +1,82 @@
+{
+  "info": {
+    "name": "Units API",
+    "description": "Collection responsável por gerenciar unidades. Inclui rotas de criação, listagem, busca por ID, atualização e remoção.",
+    "_postman_id": "units-collection-001",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+
+  "item": [
+    {
+      "name": "Units",
+      "description": "Operações da entidade **Unit**. Uma unidade representa um local específico no sistema.",
+      "item": [
+
+        {
+          "name": "GET - Listar todas as Units",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/units",
+            "description": "Retorna todas as unidades cadastradas."
+          },
+          "response": []
+        },
+
+        {
+          "name": "POST - Criar nova Unit",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/units",
+            "description": "Cria uma nova unidade.",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Unidade Central\",\n  \"address\": \"Avenida Principal 123\",\n  \"city\": \"Brasília\"\n}"
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "GET - Buscar Unit por ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/units/:id",
+            "description": "Busca uma unidade pelo ID."
+          },
+          "response": []
+        },
+
+        {
+          "name": "PUT - Atualizar Unit",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/units/:id",
+            "description": "Atualiza os dados de uma unidade existente.",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"Endereço atualizado da unidade\"\n}"
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "DELETE - Remover Unit",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/units/:id",
+            "description": "Remove uma unidade pelo ID."
+          },
+          "response": []
+        }
+
+      ]
+    }
+  ]
+}

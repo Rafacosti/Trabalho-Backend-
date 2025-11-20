@@ -1,0 +1,108 @@
+{
+  "info": {
+    "_postman_id": "e4b9fa22-03c5-4b90-b678-95d1135fa993",
+    "name": "Healthcare API - Invoices",
+    "description": "Coleção destinada à entidade **Invoices (Faturas)** do sistema Healthcare API. \n\nAqui você encontra todos os endpoints de CRUD com exemplos, bodies válidos e responses de referência para facilitar os testes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Invoices",
+      "description": "Recurso responsável pelo gerenciamento de **Faturas** do sistema Healthcare API.\n\nCampos comuns de uma fatura:\n- **beneficiaryId**: ID do beneficiário relacionado\n- **amount**: valor total da fatura\n- **status**: ex.: 'pending', 'paid', 'canceled'\n- **dueDate**: data de vencimento\n- **createdAt**: registro automático de criação",
+      "item": [
+        {
+          "name": "GET - Listar todas as faturas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Retorna a lista completa de faturas registradas no sistema.",
+            "url": {
+              "raw": "http://localhost:3000/invoices",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["invoices"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Criar nova fatura",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "description": "Cria uma nova fatura no sistema. Todos os campos obrigatórios devem ser enviados.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"beneficiaryId\": \"675fa919a21b912345678111\",\n  \"amount\": 420.50,\n  \"status\": \"pending\",\n  \"dueDate\": \"2025-02-15\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/invoices",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["invoices"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Buscar fatura por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Busca e retorna uma fatura através do seu ID.",
+            "url": {
+              "raw": "http://localhost:3000/invoices/675fd192a21b912345678999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["invoices", "675fd192a21b912345678999"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT - Atualizar fatura por ID",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "description": "Atualiza qualquer campo de uma fatura já existente.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"paid\",\n  \"amount\": 420.50\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/invoices/675fd192a21b912345678999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["invoices", "675fd192a21b912345678999"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE - Remover fatura por ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "description": "Remove uma fatura do sistema através do seu ID.",
+            "url": {
+              "raw": "http://localhost:3000/invoices/675fd192a21b912345678999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["invoices", "675fd192a21b912345678999"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

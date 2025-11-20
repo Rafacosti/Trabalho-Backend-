@@ -5,12 +5,12 @@ const invoice = require('../models/invoice.model');
 router.get('/invoices', async (req, res) => res.json(await invoice.find()));
 
 router.post('/invoices', async (req, res) => {
-  const item = await Invoice.create(req.body);
+  const item = await invoice.create(req.body);
   res.status(201).json(item);
 });
 
 router.get('/invoices/:id', async (req, res) => {
-  const item = await Invoice.findById(req.params.id);
+  const item = await invoice.findById(req.params.id);
   if (!item) return res.status(404).json({ error: "Fatura não encontrada" });
   res.json(item);
 });

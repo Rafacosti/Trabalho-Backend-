@@ -1,0 +1,112 @@
+{
+  "info": {
+    "_postman_id": "6a09eb6a-45ab-4f77-88c4-2d75f577c33d",
+    "name": "Healthcare API - Beneficiaries",
+    "description": "# 📌 Healthcare API - Beneficiaries\n\nColeção contendo todos os endpointz relacionados à entidade **beneficiaries**.\n\n## 📚 Sobre o Projeto\nEsta API faz parte do sistema Healthcare, que gerencia planos, unidades, agendamentos, profissionais, beneficiários, procedimentos e faturas.\n\n## 🎯 Objetivo da Coleção\nFornecer documentação organizada e funcional dos endpoints da entidade Beneficiários, contendo:\n- Descrição detalhada dos endpoints\n- Exemplos reais de requisições\n- Estrutura organizada por funcionalidade\n\n## 🔧 Tecnologias Utilizadas\n- Node.js + Express\n- MongoDB + Mongoose\n- Postman Collection v2.1\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+
+  "item": [
+    {
+      "name": "beneficiaries",
+      "description": "## 📌 Recurso: Beneficiaries\nGerencia todos os **beneficiários** cadastrados no sistema.\n\n### Exemplo de Estrutura do Beneficiário (pode variar conforme seu model):\n- `name` (String)\n- `cpf` (String)\n- `birthDate` (Date)\n- `planId` (ObjectId)\n- `email` (String)\n- `phone` (String)\n",
+      "item": [
+
+        {
+          "name": "GET - Listar todos os beneficiários",
+          "request": {
+            "method": "GET",
+            "description": "Retorna a lista completa de beneficiários cadastrados no sistema.",
+            "url": {
+              "raw": "http://localhost:3000/beneficiaries",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["beneficiaries"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "GET - Buscar beneficiário por ID",
+          "request": {
+            "method": "GET",
+            "description": "Retorna um beneficiário específico com base em seu ID.\n\n### 🔢 Parâmetro obrigatório\n- **id**: identificador do beneficiário",
+            "url": {
+              "raw": "http://localhost:3000/beneficiaries/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["beneficiaries", ":id"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "POST - Criar novo beneficiário",
+          "request": {
+            "method": "POST",
+            "description": "Cria um novo beneficiário no sistema.\n\n### 📝 Exemplo de body válido",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Mariana Oliveira\",\n  \"cpf\": \"12345678901\",\n  \"birthDate\": \"1995-09-10\",\n  \"planId\": \"6743f23aa03b9839b3f9b120\",\n  \"email\": \"mariana.oliveira@email.com\",\n  \"phone\": \"61999998888\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/beneficiaries",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["beneficiaries"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "PUT - Atualizar beneficiário",
+          "request": {
+            "method": "PUT",
+            "description": "Atualiza os dados de um beneficiário.\n\n### 📝 Exemplo de body válido",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"novo.email.beneficiario@email.com\",\n  \"phone\": \"61988887777\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/beneficiaries/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["beneficiaries", ":id"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "DELETE - Remover beneficiário",
+          "request": {
+            "method": "DELETE",
+            "description": "Remove um beneficiário do sistema.\n\n### 🔢 Parâmetro obrigatório\n- **id**: identificador do beneficiário",
+            "url": {
+              "raw": "http://localhost:3000/beneficiaries/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["beneficiaries", ":id"]
+            }
+          },
+          "response": []
+        }
+
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "info": {
+    "name": "Users API",
+    "description": "Collection responsável por gerenciar usuários do sistema. Inclui rotas de criação, listagem, busca por ID, atualização e remoção.",
+    "_postman_id": "users-collection-001",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+
+  "item": [
+    {
+      "name": "Users",
+      "description": "Operações da entidade **User**. Um usuário representa alguém com acesso ao sistema.",
+      "item": [
+
+        {
+          "name": "GET - Listar todos os Users",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/users",
+            "description": "Retorna todos os usuários cadastrados."
+          },
+          "response": []
+        },
+
+        {
+          "name": "POST - Criar novo User",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/users",
+            "description": "Cria um novo usuário.",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Paulo Henrique\",\n  \"email\": \"paulo@email.com\",\n  \"password\": \"123456\"\n}"
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "GET - Buscar User por ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/users/:id",
+            "description": "Retorna um usuário específico pelo ID."
+          },
+          "response": []
+        },
+
+        {
+          "name": "PUT - Atualizar User",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/users/:id",
+            "description": "Atualiza os dados de um usuário existente.",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nome Atualizado\",\n  \"email\": \"novoemail@email.com\"\n}"
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "DELETE - Remover User",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/users/:id",
+            "description": "Remove um usuário do sistema pelo ID."
+          },
+          "response": []
+        }
+
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "info": {
+    "name": "Specialties API",
+    "description": "Collection responsável por gerenciar as especialidades. Inclui rotas de criação, listagem, busca por ID, atualização e remoção.",
+    "_postman_id": "specialties-collection-001",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+
+  "item": [
+    {
+      "name": "Specialties",
+      "description": "Operações da entidade **Specialty**. Uma especialidade representa uma área de atuação no sistema.",
+      "item": [
+
+        {
+          "name": "GET - Listar todas as Specialties",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/specialties",
+            "description": "Retorna todas as especialidades cadastradas."
+          },
+          "response": []
+        },
+
+        {
+          "name": "POST - Criar nova Specialty",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/specialties",
+            "description": "Cria uma nova especialidade.",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dermatologia\",\n  \"description\": \"Área especializada em cuidados com a pele\"\n}"
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "GET - Buscar Specialty por ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/specialties/:id",
+            "description": "Busca uma especialidade específica pelo ID."
+          },
+          "response": []
+        },
+
+        {
+          "name": "PUT - Atualizar Specialty",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/specialties/:id",
+            "description": "Atualiza os dados de uma especialidade.",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Descrição atualizada da especialidade\"\n}"
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "DELETE - Remover Specialty",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/specialties/:id",
+            "description": "Remove uma especialidade pelo ID."
+          },
+          "response": []
+        }
+
+      ]
+    }
+  ]
+}
