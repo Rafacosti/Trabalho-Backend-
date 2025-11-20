@@ -1,48 +1,27 @@
-const Unit = require('../models/unit.model');
+const express = require('express');
+const router = express.Router();
+const unit = require('../models/unit.model');
 
-const createUnit = async (req, res) => {
-try {
-const unit = await Unit.create(req.body);
-return res.status(201).json(unit);
-} catch (err) { return res.status(400).json({ error: err.message }); }
-};
+router.get('/units', async (req, res) => res.json(await unit.find()));
 
-const getUnits = async (req, res) => {
-try {
-const list = await Unit.find().populate('specialtyIds');
-return res.json(list);
-} catch (err) { return res.status(500).json({ error: err.message }); }
-};
+router.post('/units', async (req, res) => {
+  const item = await unit.create(req.body);
+  res.status(201).json(item);
+});
 
-const getUnitById = async (req, res) => {
-  try {
-	const unit = await Unit.findById(req.params.id).populate('specialtyIds');
-	if (!unit) return res.status(404).json({ error: "Unit not found" });
-	return res.json(unit);
-  } catch (err) { return res.status(400).json({ error: err.message }); }
-};
+router.get('/units/:id', async (req, res) => {
+  const item = await unit.findById(req.params.id);
+  if (!item) return res.status(404).json({ error: "Unidade não encontrada" });
+  res.json(item);
+});
 
-const updateUnit = async (req, res) => {
-  try {
-	const unit = await Unit.findByIdAndUpdate(req.params.id, req.body, { new: true });
-	if (!unit) return res.status(404).json({ error: "Unit not found" });
-	return res.json(unit);
-  } catch (err) { return res.status(400).json({ error: err.message }); }
-};
+router.put('/units/:id', async (req, res) => {
+  res.json(await Unit.findByIdAndUpdate(req.params.id, req.body, { new: true }));
+});
 
-const deleteUnit = async (req, res) => {
-try {
-const deleteUnit = async (req, res) => {
-  try {
-	const unit = await Unit.findByIdAndDelete(req.params.id);
-	if (!unit) return res.status(404).json({ error: "Unit not found" });
-	return res.json({ message: "Unit deleted" });
-  } catch (err) { return res.status(400).json({ error: err.message }); }
-};
-createUnit,
-getUnits,
-getUnitById,
-updateUnit,
-deleteUnit
-} catch (err) { return res.status(400).json({ error: err.message }); }
-}
+router.delete('/units/:id', async (req, res) => {
+  await unit.findByIdAndDelete(req.params.id);
+  res.json({ message: "Unidade removida" });
+});
+
+module.exports = router;

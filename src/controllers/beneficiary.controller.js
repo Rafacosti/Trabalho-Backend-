@@ -1,54 +1,27 @@
-const Beneficiary = require('../models/beneficiary.model');
+const express = require('express');
+const router = express.Router();
+const beneficiary = require('../models/beneficiary.model');
 
-const createBeneficiary = async (req, res) => {
-try {
-const beneficiary = await Beneficiary.create(req.body);
-return res.status(201).json(beneficiary);
-} catch (err) { return res.status(400).json({ error: err.message }); }
-};
+router.get('/beneficiaries', async (req, res) => res.json(await beneficiary.find()));
 
-const getBeneficiaries = async (req, res) => {
-try {
-const list = await Beneficiary.find()
-.populate('planId')
-.populate('userId');
-return res.json(list);
-} catch (err) { return res.status(500).json({ error: err.message }); }
-};
+router.post('/beneficiaries', async (req, res) => {
+  const item = await beneficiary.create(req.body);
+  res.status(201).json(item);
+});
 
-const getBeneficiaryById = async (req, res) => {
-try {
-const beneficiary = await Beneficiary.findById(req.params.id)
-.populate('planId')
-.populate('userId');
-if (!beneficiary) return res.status(404).json({ error: "Beneficiary not found" });
-return res.json(beneficiary);
-} catch (err) { return res.status(400).json({ error: err.message }); }
-};
+router.get('/beneficiaries/:id', async (req, res) => {
+  const item = await beneficiary.findById(req.params.id);
+  if (!item) return res.status(404).json({ error: "Beneficiário não encontrado" });
+  res.json(item);
+});
 
-const updateBeneficiary = async (req, res) => {
-try {
-const beneficiary = await Beneficiary.findByIdAndUpdate(
-req.params.id, req.body, { new: true }
-);
-if (!beneficiary) return res.status(404).json({ error: "Beneficiary not found" });
-return res.json(beneficiary);
-} catch (err) { return res.status(400).json({ error: err.message }); }
-};
+router.put('/beneficiaries/:id', async (req, res) => {
+  res.json(await beneficiary.findByIdAndUpdate(req.params.id, req.body, { new: true }));
+});
 
-const deleteBeneficiary = async (req, res) => {
-try {
-const beneficiary = await Beneficiary.findByIdAndDelete(req.params.id);
-if (!beneficiary) return res.status(404).json({ error: "Beneficiary not found" });
-return res.json({ message: "Beneficiary deleted" });
-} catch (err) { return res.status(400).json({ error: err.message }); }
-};
+router.delete('/beneficiaries/:id', async (req, res) => {
+  await beneficiary.findByIdAndDelete(req.params.id);
+  res.json({ message: "Beneficiário removido" });
+});
 
-module.exports = {
-createBeneficiary,
-getBeneficiaries,
-getBeneficiaryById,
-updateBeneficiary,
-deleteBeneficiary
-};
-
+module.exports = router;

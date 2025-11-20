@@ -1,65 +1,27 @@
-const Professional = require('../models/professional.model');
+const express = require('express');
+const router = express.Router();
+const profissional = require('../models/profissional.model');
 
-const createProfessional = async (req, res) => {
-  try {
-	const professional = await Professional.create(req.body);
-	return res.status(201).json(professional);
-  } catch (err) {
-	return res.status(400).json({ error: err.message });
-  }
-};
+router.get('/profissionals', async (req, res) => res.json(await profissional.find()));
 
-const getProfessionals = async (req, res) => {
-  try {
-	const list = await Professional.find()
-	  .populate('specialtyId')
-	  .populate('unitId');
-	return res.json(list);
-  } catch (err) {
-	return res.status(500).json({ error: err.message });
-  }
-};
+router.post('/profissionals', async (req, res) => {
+  const item = await profissional.create(req.body);
+  res.status(201).json(item);
+});
 
-const getProfessionalById = async (req, res) => {
-  try {
-	const professional = await Professional.findById(req.params.id)
-	  .populate('specialtyId')
-	  .populate('unitId');
-	if (!professional) return res.status(404).json({ error: "Professional not found" });
-	return res.json(professional);
-  } catch (err) {
-	return res.status(400).json({ error: err.message });
-  }
-};
+router.get('/professionals/:id', async (req, res) => {
+  const item = await professional.findById(req.params.id);
+  if (!item) return res.status(404).json({ error: "Profissional não encontrado" });
+  res.json(item);
+});
 
-const updateProfessional = async (req, res) => {
-  try {
-	const professional = await Professional.findByIdAndUpdate(
-	  req.params.id,
-	  req.body,
-	  { new: true }
-	);
-	if (!professional) return res.status(404).json({ error: "Professional not found" });
-	return res.json(professional);
-  } catch (err) {
-	return res.status(400).json({ error: err.message });
-  }
-};
+router.put('/professionals/:id', async (req, res) => {
+  res.json(await profissional.findByIdAndUpdate(req.params.id, req.body, { new: true }));
+});
 
-const deleteProfessional = async (req, res) => {
-  try {
-	const professional = await Professional.findByIdAndDelete(req.params.id);
-	if (!professional) return res.status(404).json({ error: "Professional not found" });
-	return res.json({ message: "Professional deleted" });
-  } catch (err) {
-	return res.status(400).json({ error: err.message });
-  }
-};
+router.delete('/professionals/:id', async (req, res) => {
+  await profissional.findByIdAndDelete(req.params.id);
+  res.json({ message: "Profissional removido" });
+});
 
-module.exports = {
-  createProfessional,
-  getProfessionals,
-  getProfessionalById,
-  updateProfessional,
-  deleteProfessional
-};
+module.exports = router;
